@@ -332,13 +332,16 @@ h3 { font-size: 1.2rem; }
 
 .not-found .container { text-align: center; }
 
-.about .section-header,
-.about.section-header {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
+.about .section-header { margin-bottom: var(--space-5); }
+
+.section-lead { max-width: 72ch; }
+
+.about-subtitle {
+  margin: 0;
+  font-size: 1.05rem;
 }
+
+.about-content > * + * { margin-top: var(--space-4); }
 
 .about-timeline {
   position: relative;
