@@ -101,13 +101,17 @@
       if (!input || !errorElement) return true;
 
       const isRadio = field.inputType === "radio";
+      const isCheckbox = field.inputType === "checkbox";
       const rawValue = isRadio
         ? form.querySelector(`input[name="${field.name}"]:checked`)?.value || ""
-        : input.value;
+        : isCheckbox
+          ? (input.checked ? "true" : "")
+          : input.value;
       const value = rawValue.trim();
+      const isRequired = field.requiredWhen ? field.requiredWhen(form) : !field.optional;
       let error = "";
 
-      if (!value && !field.optional) {
+      if (!value && isRequired) {
         error = `${field.label} må fylles ut.`;
       } else if (value && field.minLength && value.length < field.minLength) {
         error = `${field.label} må være minst ${field.minLength} tegn.`;
@@ -186,9 +190,43 @@
       { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
       { name: "email", label: "E-post", minLength: 3, type: "email" },
       { name: "address", label: "Adresse", minLength: 3 },
-      { name: "message", label: "Hva trenger du hjelp med?", minLength: 10 }
+      { name: "jobType", label: "Type oppdrag" },
+      {
+        name: "jobTypeOther",
+        label: "Spesifiser annet oppdrag",
+        minLength: 2,
+        optional: true,
+        requiredWhen: (form) => form.elements.jobType?.value === "Annet"
+      },
+      { name: "desiredTime", label: "Ønsket tidspunkt", minLength: 3 },
+      { name: "description", label: "Beskrivelse", minLength: 10 },
+      { name: "consent", label: "Samtykke", inputType: "checkbox" }
     ]
   });
+
+  const privateApplicationForm = document.getElementById("privateApplicationForm");
+  if (privateApplicationForm) {
+    const jobTypeSelect = privateApplicationForm.elements.jobType;
+    const otherGroup = document.getElementById("jobTypeOtherGroup");
+    const otherInput = privateApplicationForm.elements.jobTypeOther;
+
+    const updateOtherField = () => {
+      const showOtherField = jobTypeSelect?.value === "Annet";
+      if (!otherGroup || !otherInput) return;
+      otherGroup.hidden = !showOtherField;
+      otherInput.required = showOtherField;
+      if (!showOtherField) {
+        otherInput.value = "";
+        const otherError = privateApplicationForm.querySelector('[data-error-for="jobTypeOther"]');
+        if (otherError) otherError.textContent = "";
+      }
+    };
+
+    if (jobTypeSelect) {
+      jobTypeSelect.addEventListener("change", updateOtherField);
+      updateOtherField();
+    }
+  }
 
   initAjaxForm({
     formId: "applicationForm",

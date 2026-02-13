@@ -88,13 +88,44 @@
               <input type="text" name="address" minlength="3" required />
               <span class="field-error" data-error-for="address"></span>
             </label>
+
+            <label class="form-group">
+              Type oppdrag
+              <select name="jobType" required>
+                <option value="">Velg type oppdrag</option>
+                <option value="Snørydding">Snørydding</option>
+                <option value="Hagearbeid">Hagearbeid</option>
+                <option value="Avfall/rydding">Avfall/rydding</option>
+                <option value="Tilsyn">Tilsyn</option>
+                <option value="Annet">Annet</option>
+              </select>
+              <span class="field-error" data-error-for="jobType"></span>
+            </label>
+
+            <label class="form-group" id="jobTypeOtherGroup" hidden>
+              Spesifiser annet oppdrag
+              <input type="text" name="jobTypeOther" minlength="2" />
+              <span class="field-error" data-error-for="jobTypeOther"></span>
+            </label>
+
+            <label class="form-group">
+              Ønsket tidspunkt
+              <input type="text" name="desiredTime" minlength="3" placeholder="F.eks. uke 48, ettermiddag" required />
+              <span class="field-error" data-error-for="desiredTime"></span>
+            </label>
           </div>
 
           <label class="form-group">
-            Hva trenger du hjelp med?
-            <textarea name="message" rows="5" minlength="10" required></textarea>
-            <span class="field-error" data-error-for="message"></span>
+            Beskrivelse
+            <textarea name="description" rows="5" minlength="10" required></textarea>
+            <span class="field-error" data-error-for="description"></span>
           </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" name="consent" required />
+            Jeg samtykker til at opplysningene brukes for å behandle henvendelsen.
+          </label>
+          <span class="field-error" data-error-for="consent"></span>
 
           <button class="btn" type="submit">Send søknad</button>
           <div class="form-success" id="privateApplicationSuccess" role="status" aria-live="polite"></div>
