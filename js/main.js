@@ -175,6 +175,21 @@
     ]
   });
 
+
+  initAjaxForm({
+    formId: "privateApplicationForm",
+    successId: "privateApplicationSuccess",
+    submittingText: "Sender...",
+    successText: "Takk, vi har mottatt søknaden",
+    fields: [
+      { name: "name", label: "Navn", minLength: 2 },
+      { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
+      { name: "email", label: "E-post", minLength: 3, type: "email" },
+      { name: "address", label: "Adresse", minLength: 3 },
+      { name: "message", label: "Hva trenger du hjelp med?", minLength: 10 }
+    ]
+  });
+
   initAjaxForm({
     formId: "applicationForm",
     successId: "applicationSuccess",
