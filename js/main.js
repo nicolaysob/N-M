@@ -28,6 +28,14 @@
   };
 
   if (navToggle && mobileMenu && mobileOverlay) {
+    const handleDocumentClick = (event) => {
+      const isOpen = mobileMenu.classList.contains("open");
+      if (!isOpen) return;
+      const target = event.target;
+      if (mobileMenu.contains(target) || navToggle.contains(target)) return;
+      closeMenu();
+    };
+
     navToggle.addEventListener("click", () => {
       const isOpen = mobileMenu.classList.contains("open");
       isOpen ? closeMenu() : openMenu();
@@ -35,6 +43,7 @@
 
     mobileOverlay.addEventListener("click", closeMenu);
     mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("click", handleDocumentClick);
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu();
     });
