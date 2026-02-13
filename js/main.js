@@ -175,8 +175,7 @@
       { name: "company", label: "Bedrift / borettslag", minLength: 2, optional: true },
       { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
       { name: "email", label: "E-post", minLength: 3, type: "email" },
-      { name: "message", label: "Hva trenger dere hjelp med?", minLength: 10 },
-      { name: "consent", label: "Samtykke", inputType: "checkbox" }
+      { name: "message", label: "Hva trenger dere hjelp med?", minLength: 10 }
     ]
   });
 
@@ -244,8 +243,7 @@
       { name: "name", label: "Navn", minLength: 2 },
       { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
       { name: "email", label: "E-post", minLength: 3, type: "email" },
-      { name: "extraInfo", label: "Ekstra info", minLength: 10, optional: true },
-      { name: "consent", label: "Samtykke", inputType: "checkbox" }
+      { name: "extraInfo", label: "Ekstra info", minLength: 10, optional: true }
     ]
   });
 })();
