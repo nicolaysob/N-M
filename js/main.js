@@ -64,72 +64,112 @@
     el.textContent = new Date().getFullYear().toString();
   });
 
-  const contactForm = document.getElementById("contactForm");
-  const successMessage = document.getElementById("formSuccess");
-
-  if (!contactForm) return;
-
-  const fields = [
-    { name: "name", label: "Navn", minLength: 2 },
-    { name: "company", label: "Bedrift / borettslag", minLength: 2, optional: true },
-    { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
-    { name: "email", label: "E-post", minLength: 3, type: "email" },
-    { name: "message", label: "Hva trenger dere hjelp med?", minLength: 10 }
-  ];
-
-  const getErrorElement = (fieldName) => contactForm.querySelector(`[data-error-for="${fieldName}"]`);
   const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   const isValidPhone = (value) => /^\+?[0-9\s()-]{6,}$/.test(value);
 
-  const validateField = (field) => {
-    const input = contactForm.elements[field.name];
-    const errorElement = getErrorElement(field.name);
-    if (!input || !errorElement) return true;
+  const initAjaxForm = ({ formId, successId, submittingText, successText, fields }) => {
+    const form = document.getElementById(formId);
+    const successMessage = document.getElementById(successId);
+    if (!form) return;
 
-    const value = input.value.trim();
-    let error = "";
+    const getErrorElement = (fieldName) => form.querySelector(`[data-error-for="${fieldName}"]`);
 
-    if (!value && !field.optional) {
-      error = `${field.label} må fylles ut.`;
-    } else if (value && value.length < field.minLength) {
-      error = `${field.label} må være minst ${field.minLength} tegn.`;
-    } else if (field.type === "email" && value && !isValidEmail(value)) {
-      error = "Skriv inn en gyldig e-postadresse.";
-    } else if (field.type === "phone" && value && !isValidPhone(value)) {
-      error = "Skriv inn et gyldig telefonnummer.";
-    }
+    const validateField = (field) => {
+      const input = form.elements[field.name];
+      const errorElement = getErrorElement(field.name);
+      if (!input || !errorElement) return true;
 
-    errorElement.textContent = error;
-    return error === "";
+      const isRadio = field.inputType === "radio";
+      const rawValue = isRadio
+        ? form.querySelector(`input[name="${field.name}"]:checked`)?.value || ""
+        : input.value;
+      const value = rawValue.trim();
+      let error = "";
+
+      if (!value && !field.optional) {
+        error = `${field.label} må fylles ut.`;
+      } else if (value && field.minLength && value.length < field.minLength) {
+        error = `${field.label} må være minst ${field.minLength} tegn.`;
+      } else if (field.type === "email" && value && !isValidEmail(value)) {
+        error = "Skriv inn en gyldig e-postadresse.";
+      } else if (field.type === "phone" && value && !isValidPhone(value)) {
+        error = "Skriv inn et gyldig telefonnummer.";
+      }
+
+      errorElement.textContent = error;
+      return error === "";
+    };
+
+    fields.forEach((field) => {
+      const input = form.elements[field.name];
+      if (!input) return;
+
+      if (field.inputType === "radio" && typeof RadioNodeList !== "undefined" && input instanceof RadioNodeList) {
+        Array.from(input).forEach((radio) => {
+          radio.addEventListener("change", () => validateField(field));
+        });
+      } else {
+        input.addEventListener("input", () => validateField(field));
+        input.addEventListener("change", () => validateField(field));
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const isValid = fields.every((field) => validateField(field));
+      if (!isValid) {
+        if (successMessage) successMessage.textContent = "";
+        return;
+      }
+
+      if (successMessage) successMessage.textContent = submittingText;
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+
+        if (!response.ok) throw new Error("Form submission failed");
+        if (successMessage) successMessage.textContent = successText;
+        form.reset();
+      } catch (_error) {
+        if (successMessage) successMessage.textContent = "Noe gikk galt. Prøv igjen.";
+      }
+    });
   };
 
-  fields.forEach((field) => {
-    const input = contactForm.elements[field.name];
-    if (input) input.addEventListener("input", () => validateField(field));
+  initAjaxForm({
+    formId: "contactForm",
+    successId: "formSuccess",
+    submittingText: "Sender...",
+    successText: "Takk! Meldingen er sendt.",
+    fields: [
+      { name: "name", label: "Navn", minLength: 2 },
+      { name: "company", label: "Bedrift / borettslag", minLength: 2, optional: true },
+      { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
+      { name: "email", label: "E-post", minLength: 3, type: "email" },
+      { name: "message", label: "Hva trenger dere hjelp med?", minLength: 10 }
+    ]
   });
 
-  contactForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const isValid = fields.every((field) => validateField(field));
-    if (!isValid) {
-      if (successMessage) successMessage.textContent = "";
-      return;
-    }
-
-    if (successMessage) successMessage.textContent = "Sender...";
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: new FormData(contactForm),
-        headers: { Accept: "application/json" }
-      });
-
-      if (!response.ok) throw new Error("Form submission failed");
-      if (successMessage) successMessage.textContent = "Takk! Meldingen er sendt.";
-      contactForm.reset();
-    } catch (error) {
-      if (successMessage) successMessage.textContent = "Noe gikk galt. Prøv igjen.";
-    }
+  initAjaxForm({
+    formId: "applicationForm",
+    successId: "applicationSuccess",
+    submittingText: "Sender...",
+    successText: "Takk, vi har mottatt søknaden",
+    fields: [
+      { name: "contractType", label: "Type kontrakt" },
+      { name: "customerType", label: "Type kunde" },
+      { name: "area", label: "Adresse/område", minLength: 2 },
+      { name: "scope", label: "Størrelse/omfang" },
+      { name: "startDate", label: "Ønsket oppstart" },
+      { name: "duration", label: "Ønsket varighet" },
+      { name: "name", label: "Navn", minLength: 2 },
+      { name: "phone", label: "Telefon", minLength: 6, type: "phone" },
+      { name: "email", label: "E-post", minLength: 3, type: "email" },
+      { name: "extraInfo", label: "Ekstra info", minLength: 10, optional: true }
+    ]
   });
 })();
