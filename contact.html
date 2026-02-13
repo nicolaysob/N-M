@@ -27,24 +27,26 @@
 <body>
   <a class="skip-link" href="#main-content">Hopp til innhold</a>
   <div id="top"></div>
+
   <header class="site-header" id="siteHeader">
-    <nav class="nav container" aria-label="Hovedmeny">
+    <nav class="container nav" aria-label="Hovedmeny">
       <a class="logo" href="index.html" aria-label="N & M Vaktmesterservice AS">
         <span class="logo-text">N &amp; M Vaktmesterservice AS</span>
         <span class="logo-divider" aria-hidden="true"></span>
         <img class="logo-mark" src="images/logo-mark.png" alt="N &amp; M logo" width="36" height="36" />
       </a>
+
       <div class="nav-links">
         <a href="index.html">Hjem</a>
         <a href="index.html#tjenester">Tjenester</a>
         <a href="#kontakt" class="btn btn-small" aria-current="page">Kontakt</a>
       </div>
+
       <button class="nav-toggle" id="navToggle" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </nav>
+
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <a href="index.html">Hjem</a>
@@ -69,13 +71,14 @@
           <p>Få gratis befaring og et tydelig tilbud tilpasset deres eiendom.</p>
           <div class="contact-info">
             <p><strong>Telefon:</strong> <a href="tel:+4722000000">22 00 00 00</a></p>
-            <p><strong>E-post:</strong> <a href="mailto:Nicolaysob2002@gmail.com">Nicolaysob2002@gmail.com</a></p>
+            <p><strong>E-post:</strong> Nicolaysob2002@gmail.com</p>
             <p><strong>Åpningstid:</strong> Man–Fre 08:00–16:00</p>
           </div>
           <div class="gdpr">
             <p>Vi lagrer kun informasjonen du sender inn for å følge opp henvendelsen. Ingen informasjonskapsler brukes.</p>
           </div>
         </div>
+
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykdepdl" method="POST" novalidate>
           <label>
             Navn
@@ -104,13 +107,6 @@
           </label>
           <button class="btn" type="submit">Be om tilbud</button>
           <div class="form-success" id="formSuccess" role="status" aria-live="polite"></div>
-          <div class="form-fallback" id="formFallback" hidden>
-            <div class="fallback-actions">
-              <button class="btn btn-ghost" type="button" id="copyEmailBtn">Kopier e-postadresse</button>
-              <button class="btn btn-ghost" type="button" id="copyMessageBtn">Kopier melding</button>
-            </div>
-            <textarea class="fallback-textarea" id="fallbackTextarea" rows="6" readonly></textarea>
-          </div>
         </form>
       </div>
     </section>
@@ -133,6 +129,7 @@
         <p><strong>Kontakt</strong><br/>22 00 00 00<br/>Nicolaysob2002@gmail.com</p>
       </div>
     </div>
+    <div class="container footer-bottom">© <span id="currentYear"></span> N &amp; M Vaktmesterservice AS</div>
   </footer>
 
   <script type="application/ld+json">
