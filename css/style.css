@@ -438,6 +438,23 @@ h3 { font-size: 1.2rem; }
   justify-content: space-between;
 }
 
+.final-cta-card {
+  height: 100%;
+}
+
+.dual-cta-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.dual-cta .final-cta {
+  padding: 0;
+}
+
+.dual-cta .final-cta .container {
+  width: 100%;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -632,6 +649,10 @@ textarea:focus {
 
   .contact-grid { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dual-cta-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
   .final-cta-card { flex-direction: row; align-items: center; }
   .footer-grid { grid-template-columns: 1.3fr 1fr 1fr; }
 }
