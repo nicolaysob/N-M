@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kontakt N & M Vaktmesterservice AS for gratis befaring og tilbud. Vi svarer raskt og følger opp henvendelser fra borettslag, sameier, næring og private eiere." />
+  <meta name="keywords" content="kontakt vaktmester, befaring, tilbud, borettslag, sameie, næringseiendom" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b1d39" />
+  <title>Kontakt | N & M Vaktmesterservice AS</title>
+  <link rel="canonical" href="https://example.com/kontakt" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <meta property="og:title" content="Kontakt | N & M Vaktmesterservice AS" />
+  <meta property="og:description" content="Kontakt oss for gratis befaring og et konkret tilbud tilpasset eiendommen." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kontakt | N & M Vaktmesterservice AS" />
+  <meta name="twitter:description" content="Kontakt oss for gratis befaring og et konkret tilbud tilpasset eiendommen." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Hopp til innhold</a>
+  <div id="top"></div>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav container" aria-label="Hovedmeny">
+      <a class="logo" href="index.html" aria-label="N & M Vaktmesterservice AS">
+        <span class="logo-text">N &amp; M Vaktmesterservice AS</span>
+        <span class="logo-divider" aria-hidden="true"></span>
+        <img class="logo-mark" src="images/logo-mark.png" alt="N &amp; M logo" width="36" height="36" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="index.html#tjenester">Tjenester</a>
+        <a href="#kontakt" class="btn btn-small" aria-current="page">Kontakt</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="index.html">Hjem</a>
+      <a href="index.html#tjenester">Tjenester</a>
+      <a href="#kontakt" class="btn" aria-current="page">Kontakt</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Kontakt</p>
+        <h1>Be om gratis befaring</h1>
+        <p class="lead">Vi kartlegger behovet og gir et konkret tilbud tilpasset eiendommen.</p>
+      </div>
+    </section>
+
+    <section class="section contact" id="kontakt">
+      <div class="container contact-grid">
+        <div>
+          <h2>Kontakt oss</h2>
+          <p>Få gratis befaring og et tydelig tilbud tilpasset deres eiendom.</p>
+          <div class="contact-info">
+            <p><strong>Telefon:</strong> <a href="tel:+4722000000">22 00 00 00</a></p>
+            <p><strong>E-post:</strong> <a href="mailto:Nicolaysob2002@gmail.com">Nicolaysob2002@gmail.com</a></p>
+            <p><strong>Åpningstid:</strong> Man–Fre 08:00–16:00</p>
+          </div>
+          <div class="gdpr">
+            <p>Vi lagrer kun informasjonen du sender inn for å følge opp henvendelsen. Ingen informasjonskapsler brukes.</p>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykdepdl" method="POST" novalidate>
+          <label>
+            Navn
+            <input type="text" name="name" minlength="2" required />
+            <span class="field-error" data-error-for="name"></span>
+          </label>
+          <label>
+            Bedrift / borettslag
+            <input type="text" name="company" minlength="2" />
+            <span class="field-error" data-error-for="company"></span>
+          </label>
+          <label>
+            Telefon
+            <input type="tel" name="phone" minlength="6" required />
+            <span class="field-error" data-error-for="phone"></span>
+          </label>
+          <label>
+            E-post
+            <input type="email" name="email" required />
+            <span class="field-error" data-error-for="email"></span>
+          </label>
+          <label>
+            Hva trenger dere hjelp med?
+            <textarea name="message" rows="4" minlength="10" required></textarea>
+            <span class="field-error" data-error-for="message"></span>
+          </label>
+          <button class="btn" type="submit">Be om tilbud</button>
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite"></div>
+          <div class="form-fallback" id="formFallback" hidden>
+            <div class="fallback-actions">
+              <button class="btn btn-ghost" type="button" id="copyEmailBtn">Kopier e-postadresse</button>
+              <button class="btn btn-ghost" type="button" id="copyMessageBtn">Kopier melding</button>
+            </div>
+            <textarea class="fallback-textarea" id="fallbackTextarea" rows="6" readonly></textarea>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <a class="back-to-top" id="backToTop" href="#top" aria-label="Til toppen">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img class="logo-image footer-logo" src="images/logo.png" alt="N & M Vaktmesterservice AS" width="180" height="56" loading="lazy" />
+        <p>Profesjonell drift og vedlikehold for borettslag, sameier, næring og privatpersoner.</p>
+      </div>
+      <div>
+        <p><strong>Adresse</strong><br/>Drammensveien 10, 0255 Oslo</p>
+      </div>
+      <div>
+        <p><strong>Kontakt</strong><br/>22 00 00 00<br/>Nicolaysob2002@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "N & M Vaktmesterservice AS",
+      "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80",
+      "url": "https://example.com/",
+      "telephone": "22 00 00 00",
+      "email": "Nicolaysob2002@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Drammensveien 10",
+        "postalCode": "0255",
+        "addressLocality": "Oslo",
+        "addressCountry": "NO"
+      }
+    }
+  </script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
