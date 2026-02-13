@@ -64,6 +64,27 @@
     el.textContent = new Date().getFullYear().toString();
   });
 
+  const timelineItems = document.querySelectorAll('[data-animate="timeline-item"]');
+  if (timelineItems.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    timelineItems.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 80}ms`;
+      observer.observe(item);
+    });
+  } else {
+    timelineItems.forEach((item) => item.classList.add("is-visible"));
+  }
+
   const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   const isValidPhone = (value) => /^\+?[0-9\s()-]{6,}$/.test(value);
 
