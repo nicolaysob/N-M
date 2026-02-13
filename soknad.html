@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Søk om fast kontrakt for vinter, sommer eller helår." />
+  <meta name="theme-color" content="#0b1d39" />
+  <title>Søkeskjema | N & M Vaktmesterservice AS</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Hopp til innhold</a>
+  <div id="top"></div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="container nav" aria-label="Hovedmeny">
+      <a class="logo" href="index.html" aria-label="N & M Vaktmesterservice AS">
+        <span class="logo-text">N &amp; M Vaktmesterservice AS</span>
+        <span class="logo-divider" aria-hidden="true"></span>
+        <img class="logo-mark" src="images/logo-mark.png" alt="N &amp; M logo" width="36" height="36" />
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="index.html#tjenester">Tjenester</a>
+        <a href="contracts.html">Faste kontrakter</a>
+        <a href="soknad.html" aria-current="page">Søkeskjema</a>
+        <a href="contact.html" class="btn btn-small">Kontakt</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="index.html">Hjem</a>
+      <a href="index.html#tjenester">Tjenester</a>
+      <a href="contracts.html">Faste kontrakter</a>
+      <a href="soknad.html" aria-current="page">Søkeskjema</a>
+      <a href="contact.html" class="btn">Kontakt</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Forside</a> / <a href="contracts.html">Faste kontrakter</a> / Søkeskjema</p>
+        <p class="eyebrow">Søknad</p>
+        <h1>Søk om fast kontrakt</h1>
+        <p class="lead">Fyll ut skjemaet, så tar vi kontakt med forslag til oppstart og omfang.</p>
+      </div>
+    </section>
+
+    <section class="section contact">
+      <div class="container">
+        <a class="back-link" href="contracts.html"><i class="fa-solid fa-arrow-left"></i> Tilbake til kontraktsvalg</a>
+        <form class="contact-form" id="applicationForm" action="https://formspree.io/f/mykdepdl" method="POST" novalidate>
+          <div class="form-grid">
+            <label class="form-group">
+              Type kontrakt
+              <select name="contractType" required>
+                <option value="">Velg kontraktstype</option>
+                <option value="Vinter">Vinter</option>
+                <option value="Sommer">Sommer</option>
+                <option value="Helår">Helår</option>
+              </select>
+              <span class="field-error" data-error-for="contractType"></span>
+            </label>
+
+            <label class="form-group">
+              Type kunde
+              <select name="customerType" required>
+                <option value="">Velg kundetype</option>
+                <option value="Borettslag">Borettslag</option>
+                <option value="Sameie">Sameie</option>
+                <option value="Bedrift">Bedrift</option>
+                <option value="Privat">Privat</option>
+              </select>
+              <span class="field-error" data-error-for="customerType"></span>
+            </label>
+
+            <label class="form-group">
+              Adresse/område
+              <input type="text" name="area" minlength="2" required />
+              <span class="field-error" data-error-for="area"></span>
+            </label>
+
+            <label class="form-group">
+              Størrelse/omfang
+              <select name="scope" required>
+                <option value="">Velg størrelse</option>
+                <option value="Liten">Liten</option>
+                <option value="Medium">Medium</option>
+                <option value="Stor">Stor</option>
+              </select>
+              <span class="field-error" data-error-for="scope"></span>
+            </label>
+
+            <label class="form-group">
+              Ønsket oppstart
+              <input type="date" name="startDate" required />
+              <span class="field-error" data-error-for="startDate"></span>
+            </label>
+
+            <label class="form-group">
+              Ønsket varighet
+              <select name="duration" required>
+                <option value="">Velg varighet</option>
+                <option value="3 mnd">3 mnd</option>
+                <option value="6 mnd">6 mnd</option>
+                <option value="12 mnd">12 mnd</option>
+                <option value="Annet">Annet</option>
+              </select>
+              <span class="field-error" data-error-for="duration"></span>
+            </label>
+
+            <label class="form-group">
+              Budsjett (valgfritt)
+              <select name="budget">
+                <option value="">Ikke oppgitt</option>
+                <option value="Under 10 000 kr/mnd">Under 10 000 kr/mnd</option>
+                <option value="10 000 - 25 000 kr/mnd">10 000 - 25 000 kr/mnd</option>
+                <option value="25 000 - 50 000 kr/mnd">25 000 - 50 000 kr/mnd</option>
+                <option value="Over 50 000 kr/mnd">Over 50 000 kr/mnd</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="fieldset">
+            <legend>Tjenester ønsket</legend>
+            <div class="checkbox-list">
+              <label><input type="checkbox" name="services" value="Snørydding/strøing" /> Snørydding/strøing</label>
+              <label><input type="checkbox" name="services" value="Plenklipp" /> Plenklipp</label>
+              <label><input type="checkbox" name="services" value="Tilsyn" /> Tilsyn</label>
+              <label><input type="checkbox" name="services" value="Avfall/rydding" /> Avfall/rydding</label>
+              <label><input type="checkbox" name="services" value="Annet" /> Annet</label>
+            </div>
+          </fieldset>
+
+          <div class="form-grid">
+            <label class="form-group">
+              Navn
+              <input type="text" name="name" minlength="2" required />
+              <span class="field-error" data-error-for="name"></span>
+            </label>
+
+            <label class="form-group">
+              Telefon
+              <input type="tel" name="phone" minlength="6" required />
+              <span class="field-error" data-error-for="phone"></span>
+            </label>
+
+            <label class="form-group">
+              E-post
+              <input type="email" name="email" required />
+              <span class="field-error" data-error-for="email"></span>
+            </label>
+          </div>
+
+          <label class="form-group">
+            Ekstra info
+            <textarea name="extraInfo" rows="5"></textarea>
+            <span class="field-error" data-error-for="extraInfo"></span>
+          </label>
+
+          <button class="btn" type="submit">Send søknad</button>
+          <div class="form-success" id="applicationSuccess" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <a class="back-to-top" id="backToTop" href="#top" aria-label="Til toppen">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img class="logo-image footer-logo" src="images/logo.png" alt="N & M Vaktmesterservice AS" width="180" height="56" loading="lazy" />
+        <p>Profesjonell drift og vedlikehold for borettslag, sameier, næring og privatpersoner.</p>
+      </div>
+      <div>
+        <p><strong>Adresse</strong><br/>Drammensveien 10, 0255 Oslo</p>
+      </div>
+      <div>
+        <p><strong>Kontakt</strong><br/>22 00 00 00<br/>Nicolaysob2002@gmail.com</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">© <span id="currentYear"></span> N &amp; M Vaktmesterservice AS</div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
